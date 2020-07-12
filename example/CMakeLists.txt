@@ -1,13 +1,13 @@
 # This file should be used as a template for creating new projects with Python wrapping using the CMake tools
 
 ###################################################################################
-# 1. To create your own project, replace "gtsam_example" with the actual name of your project
+# To create your own project, replace "wrap_example" with the actual name of your project
 cmake_minimum_required(VERSION 3.0)
-project(gtsam_example CXX C)
+project(wrap_example CXX C)
 set(CXX_STANDARD 11)
 
 ###################################################################################
-# 2. Set the python version
+# Set the python version
 set(GTSAM_PYTHON_VERSION "Default" CACHE STRING "The Python version to use for wrapping")
 if(GTSAM_PYTHON_VERSION STREQUAL "Default")
   find_package(PythonInterp REQUIRED)
@@ -18,55 +18,28 @@ else()
 endif()
 
 ###################################################################################
-# 3. Find GTSAM components so we have access to the GTSAM Cython install path
-find_package(GTSAM REQUIRED) # Uses installed package
-# Note: Since Jan-2019, GTSAMConfig.cmake defines exported CMake targets
-# that automatically do include the include_directories() without the need
-# to call include_directories(), just target_link_libraries(NAME gtsam)
-#include_directories(${GTSAM_INCLUDE_DIR})
-
-# Include the required GTSAM Cython libraries
-include_directories(${GTSAM_CYTHON_INSTALL_PATH})
-include_directories(${GTSAM_EIGENCY_INSTALL_PATH})
-
-###################################################################################
-# 4. Get the wrapping functions
-# Include GTSAM CMake tools
-find_package(GTSAMCMakeTools CONFIG)
-#include(GtsamBuildTypes) # Load build type flags and default to Debug mode
-#include(GtsamTesting)    # Easy functions for creating unit tests and scripts
-
-###################################################################################
-# 5. Add the local source directory for CMake
+# Add the local source directory for CMake
 # Ensure that local folder is searched before library folders
 include_directories(BEFORE "${PROJECT_SOURCE_DIR}")
 
 
 ###################################################################################
-# 6. Build static library from common sources
+# Build static library from common sources
 add_library(${PROJECT_NAME} SHARED src/greeting.h src/greeting.cpp)
-target_link_libraries(${PROJECT_NAME} gtsam)
+target_link_libraries(${PROJECT_NAME})
 
 ###################################################################################
 # 7. Install library
 install(TARGETS ${PROJECT_NAME} LIBRARY DESTINATION lib ARCHIVE DESTINATION lib RUNTIME DESTINATION bin)
 
 ###################################################################################
-# # Build tests (CMake tracks the dependecy to link with GTSAM through our project's static library)
-# gtsamAddTestsGlob("${PROJECT_NAME}" "tests/test*.cpp" "" "${PROJECT_NAME}")
-
-###################################################################################
-# # Build scripts (CMake tracks the dependecy to link with GTSAM through our project's static library)
-# gtsamAddExamplesGlob("*.cpp" "" "${PROJECT_NAME}")
-
-###################################################################################
 # 8. Copy the __init__.py file so Cython recognizes this as a package.
 # This function also updates the contents to use the correct package name.
-configure_file(${PROJECT_SOURCE_DIR}/__init__.py.in ${PROJECT_BINARY_DIR}/cython/${PROJECT_NAME}/__init__.py)
+configure_file(${PROJECT_SOURCE_DIR}/__init__.py.in ${PROJECT_BINARY_DIR}/python/${PROJECT_NAME}/__init__.py)
 
 ###################################################################################
 # 9. (Strict) Copy over the setup.py file so we can build and install the package.
-configure_file(${PROJECT_SOURCE_DIR}/setup.py ${PROJECT_BINARY_DIR}/cython/setup.py COPYONLY)
+configure_file(${PROJECT_SOURCE_DIR}/setup.py ${PROJECT_BINARY_DIR}/python/setup.py COPYONLY)
 
 ###################################################################################
 # 10. Build Pybind wrapper
