@@ -20,7 +20,7 @@ if(WRAP_EXAMPLE_BUILD_PYTHON)
             "${PYBIND_WRAP_MODULE_NAME}" # module_name
             "${PYBIND_WRAP_MODULE_NAME}" # top_namespace
             "${ignore}" # ignore_classes
-            ${PROJECT_SOURCE_DIR}/wrap/pybind_wrapper.tpl
+            ${CMAKE_CURRENT_LIST_DIR}/pybind_wrapper.tpl
             ${PYBIND_WRAP_MODULE_NAME} # libs
             "${PYBIND_WRAP_MODULE_NAME};${PYBIND_WRAP_MODULE_NAME}_header" # dependencies
             )
