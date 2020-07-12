@@ -11,11 +11,11 @@
  * @file     gtsam_example.h
  * @brief    Example wrapper interface file for Python
  * @author   Varun Agrawal
+ * @author   Fan Jiang
  */
 
 // This is an interface file for automatic Python wrapper generation.
 // See gtsam.h for full documentation and more examples.
-
 #include <src/greeting.h>
 
 // The namespace should be the same as in the c++ source code.
@@ -24,7 +24,6 @@ namespace wrap_example {
 class Greeting {
   Greeting();
   void sayHello() const;
-
   void sayGoodbye() const;
 };
 

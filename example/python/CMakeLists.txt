@@ -23,6 +23,7 @@ if(WRAP_EXAMPLE_BUILD_PYTHON)
             ${CMAKE_CURRENT_LIST_DIR}/pybind_wrapper.tpl
             ${PYBIND_WRAP_MODULE_NAME} # libs
             "${PYBIND_WRAP_MODULE_NAME};${PYBIND_WRAP_MODULE_NAME}_header" # dependencies
+            OFF # use_boost
             )
 
   set_target_properties(${PYBIND_WRAP_MODULE_NAME}_py PROPERTIES
