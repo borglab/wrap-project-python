@@ -33,15 +33,6 @@ target_link_libraries(${PROJECT_NAME})
 install(TARGETS ${PROJECT_NAME} LIBRARY DESTINATION lib ARCHIVE DESTINATION lib RUNTIME DESTINATION bin)
 
 ###################################################################################
-# Copy the __init__.py file so Cython recognizes this as a package.
-# This function also updates the contents to use the correct package name.
-configure_file(${PROJECT_SOURCE_DIR}/__init__.py.in ${PROJECT_BINARY_DIR}/python/${PROJECT_NAME}/__init__.py)
-
-###################################################################################
-# (Strict) Copy over the setup.py file so we can build and install the package.
-configure_file(${PROJECT_SOURCE_DIR}/setup.py ${PROJECT_BINARY_DIR}/python/setup.py COPYONLY)
-
-###################################################################################
 # Build Pybind wrapper
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/wrap/cmake")
 
