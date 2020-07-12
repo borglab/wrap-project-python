@@ -19,12 +19,12 @@
 #include <src/greeting.h>
 
 // The namespace should be the same as in the c++ source code.
-namespace gtsam_example {
+namespace wrap_example {
 
 class Greeting {
   Greeting();
   void sayHello() const;
-  
+
   void sayGoodbye() const;
 };
 

@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 
-namespace gtsam_example {
+namespace wrap_example {
 
 class Greeting {
  public:
@@ -12,4 +12,4 @@ class Greeting {
   void sayGoodbye() const;
 };
 
-}  // namespace gtsam_example
+}  // namespace wrap_example
