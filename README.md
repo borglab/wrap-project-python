@@ -2,6 +2,8 @@
 
 Project template illustrating python wrapping with borglab/wrap, **no** GTSAM.
 
+This file will be included as the python package description :)
+
 ## PREREQUISITES
 
 - Python 3.6+ is required, since we support these versions.
