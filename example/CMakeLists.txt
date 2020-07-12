@@ -38,6 +38,8 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/wrap/cmake")
 
 set(WRAP_EXAMPLE_VERSION_STRING 0.0.1) # Needed for generating setup.py
 
+option(WRAP_EXAMPLE_BUILD_PYTHON "Build the Python wrapper" ON)
+
 if(WRAP_EXAMPLE_BUILD_PYTHON)
 	# if (NOT GTSAM_TYPEDEF_POINTS_TO_VECTORS)
 	# 	message(FATAL_ERROR "WRAP_EXAMPLE_BUILD_PYTHON requires GTSAM_TYPEDEF_POINTS_TO_VECTORS to be enabled but it is not.")
