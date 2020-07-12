@@ -40,17 +40,17 @@ if(WRAP_EXAMPLE_BUILD_PYTHON)
 
   # Copy the __init__.py file so Cython recognizes this as a package.
   # This function also updates the contents to use the correct package name.
-  # configure_file(${CMAKE_CURRENT_LIST_DIR}/${PYBIND_WRAP_MODULE_NAME}_py/__init__.py.in ${PROJECT_BINARY_DIR}/python/${PROJECT_NAME}/__init__.py)
+  configure_file(${CMAKE_CURRENT_LIST_DIR}/${PYBIND_WRAP_MODULE_NAME}_py/__init__.py.in ${PROJECT_BINARY_DIR}/${PYBIND_WRAP_MODULE_NAME}/__init__.py)
 
   # (Strict) Copy over the setup.py file so we can build and install the package.
   # configure_file(${CMAKE_CURRENT_LIST_DIR}/setup.py ${PROJECT_BINARY_DIR}/python/setup.py COPYONLY)
 
   # Install.
-  install(TARGETS ${PYBIND_WRAP_MODULE_NAME}_py DESTINATION "${WRAP_EXAMPLE_PY_INSTALL_PATH}/${PYBIND_WRAP_MODULE_NAME}/")
-  message("PYTHON INSTALL PATH: ${WRAP_EXAMPLE_PY_INSTALL_PATH}/${PYBIND_WRAP_MODULE_NAME}")
-  install_python_files("${PROJECT_BINARY_DIR}/setup.py"
-                       "${WRAP_EXAMPLE_PY_INSTALL_PATH}")
-  install_python_scripts("${PROJECT_SOURCE_DIR}/python/${PYBIND_WRAP_MODULE_NAME}_py/"
-                         "${WRAP_EXAMPLE_PY_INSTALL_PATH}/${PYBIND_WRAP_MODULE_NAME}" "*.py")
+  # install(TARGETS ${PYBIND_WRAP_MODULE_NAME}_py DESTINATION "${WRAP_EXAMPLE_PY_INSTALL_PATH}/${PYBIND_WRAP_MODULE_NAME}/")
+  # message("PYTHON INSTALL PATH: ${WRAP_EXAMPLE_PY_INSTALL_PATH}/${PYBIND_WRAP_MODULE_NAME}")
+  # install_python_files("${PROJECT_BINARY_DIR}/setup.py"
+  #                      "${WRAP_EXAMPLE_PY_INSTALL_PATH}")
+  # install_python_scripts("${PROJECT_SOURCE_DIR}/python/${PYBIND_WRAP_MODULE_NAME}_py/"
+  #                        "${WRAP_EXAMPLE_PY_INSTALL_PATH}/${PYBIND_WRAP_MODULE_NAME}" "*.py")
 
 endif()

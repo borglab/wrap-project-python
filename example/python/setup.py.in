@@ -16,11 +16,11 @@ package_data = {
 }
 
 setup(
-    name='gtsam_example',
-    description='Demo Library using GTSAM.',
+    name='wrap_example',
+    description='Demo Library using borglab/wrap.',
     url='https://gtsam.org/',
     version=
-    '${GTSAM_EXAMPLE_VERSION_STRING}',  # https://www.python.org/dev/peps/pep-0440/
+    '${WRAP_EXAMPLE_VERSION_STRING}',  # https://www.python.org/dev/peps/pep-0440/
     author='Frank Dellaert et. al.',
     author_email='frank.dellaert@gtsam.org',
     license='Simplified BSD license',
