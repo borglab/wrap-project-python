@@ -40,7 +40,7 @@ if(WRAP_EXAMPLE_BUILD_PYTHON)
 
   # Copy the __init__.py file so Cython recognizes this as a package.
   # This function also updates the contents to use the correct package name.
-  configure_file(${CMAKE_CURRENT_LIST_DIR}/${PYBIND_WRAP_MODULE_NAME}_py/__init__.py.in ${PROJECT_BINARY_DIR}/python/${PROJECT_NAME}/__init__.py)
+  # configure_file(${CMAKE_CURRENT_LIST_DIR}/${PYBIND_WRAP_MODULE_NAME}_py/__init__.py.in ${PROJECT_BINARY_DIR}/python/${PROJECT_NAME}/__init__.py)
 
   # (Strict) Copy over the setup.py file so we can build and install the package.
   # configure_file(${CMAKE_CURRENT_LIST_DIR}/setup.py ${PROJECT_BINARY_DIR}/python/setup.py COPYONLY)
