@@ -1,13 +1,12 @@
-if(GTSAM_EXAMPLE_BUILD_PYTHON)
-  set(PYBIND_WRAP_MODULE_NAME gtsam_example)
+if(WRAP_EXAMPLE_BUILD_PYTHON)
+  set(PYBIND_WRAP_MODULE_NAME ${PROJECT_NAME})
   
   # Generate setup.py.
   file(READ "${PROJECT_SOURCE_DIR}/README.md" README_CONTENTS)
   configure_file(${PROJECT_SOURCE_DIR}/python/setup.py.in
                  ${PROJECT_BINARY_DIR}/setup.py)
 
-  add_subdirectory(pybind11)
-  include(GtsamPybindWrap)
+  include(PybindWrap)
 
   add_custom_target(${PYBIND_WRAP_MODULE_NAME}_header DEPENDS "${PROJECT_SOURCE_DIR}/${PYBIND_WRAP_MODULE_NAME}.h")
 
@@ -40,11 +39,11 @@ if(GTSAM_EXAMPLE_BUILD_PYTHON)
                   "${PROJECT_BINARY_DIR}/${PYBIND_WRAP_MODULE_NAME}")
 
   # Install.
-  install(TARGETS ${PYBIND_WRAP_MODULE_NAME}_py DESTINATION "${GTSAM_EXAMPLE_PY_INSTALL_PATH}/${PYBIND_WRAP_MODULE_NAME}/")
-  message("PYTHON INSTALL PATH: ${GTSAM_EXAMPLE_PY_INSTALL_PATH}/${PYBIND_WRAP_MODULE_NAME}")
+  install(TARGETS ${PYBIND_WRAP_MODULE_NAME}_py DESTINATION "${WRAP_EXAMPLE_PY_INSTALL_PATH}/${PYBIND_WRAP_MODULE_NAME}/")
+  message("PYTHON INSTALL PATH: ${WRAP_EXAMPLE_PY_INSTALL_PATH}/${PYBIND_WRAP_MODULE_NAME}")
   install_python_files("${PROJECT_BINARY_DIR}/setup.py"
-                       "${GTSAM_EXAMPLE_PY_INSTALL_PATH}")
+                       "${WRAP_EXAMPLE_PY_INSTALL_PATH}")
   install_python_scripts("${PROJECT_SOURCE_DIR}/python/${PYBIND_WRAP_MODULE_NAME}_py/"
-                         "${GTSAM_EXAMPLE_PY_INSTALL_PATH}/${PYBIND_WRAP_MODULE_NAME}" "*.py")
+                         "${WRAP_EXAMPLE_PY_INSTALL_PATH}/${PYBIND_WRAP_MODULE_NAME}" "*.py")
 
 endif()

@@ -8,13 +8,13 @@ set(CXX_STANDARD 11)
 
 ###################################################################################
 # Set the python version
-set(GTSAM_PYTHON_VERSION "Default" CACHE STRING "The Python version to use for wrapping")
-if(GTSAM_PYTHON_VERSION STREQUAL "Default")
+set(WRAP_PYTHON_VERSION "Default" CACHE STRING "The Python version to use for wrapping")
+if(WRAP_PYTHON_VERSION STREQUAL "Default")
   find_package(PythonInterp REQUIRED)
   find_package(PythonLibs REQUIRED)
 else()
-  find_package(PythonInterp ${GTSAM_PYTHON_VERSION} EXACT REQUIRED)
-  find_package(PythonLibs ${GTSAM_PYTHON_VERSION} EXACT REQUIRED)
+  find_package(PythonInterp ${WRAP_PYTHON_VERSION} EXACT REQUIRED)
+  find_package(PythonLibs ${WRAP_PYTHON_VERSION} EXACT REQUIRED)
 endif()
 
 ###################################################################################
@@ -29,26 +29,28 @@ add_library(${PROJECT_NAME} SHARED src/greeting.h src/greeting.cpp)
 target_link_libraries(${PROJECT_NAME})
 
 ###################################################################################
-# 7. Install library
+# Install library
 install(TARGETS ${PROJECT_NAME} LIBRARY DESTINATION lib ARCHIVE DESTINATION lib RUNTIME DESTINATION bin)
 
 ###################################################################################
-# 8. Copy the __init__.py file so Cython recognizes this as a package.
+# Copy the __init__.py file so Cython recognizes this as a package.
 # This function also updates the contents to use the correct package name.
 configure_file(${PROJECT_SOURCE_DIR}/__init__.py.in ${PROJECT_BINARY_DIR}/python/${PROJECT_NAME}/__init__.py)
 
 ###################################################################################
-# 9. (Strict) Copy over the setup.py file so we can build and install the package.
+# (Strict) Copy over the setup.py file so we can build and install the package.
 configure_file(${PROJECT_SOURCE_DIR}/setup.py ${PROJECT_BINARY_DIR}/python/setup.py COPYONLY)
 
 ###################################################################################
-# 10. Build Pybind wrapper
-set(GTSAM_EXAMPLE_VERSION_STRING 0.0.1) # Needed for generating setup.py
+# Build Pybind wrapper
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/wrap/cmake")
 
-if(GTSAM_EXAMPLE_BUILD_PYTHON)
+set(WRAP_EXAMPLE_VERSION_STRING 0.0.1) # Needed for generating setup.py
+
+if(WRAP_EXAMPLE_BUILD_PYTHON)
 	# if (NOT GTSAM_TYPEDEF_POINTS_TO_VECTORS)
-	# 	message(FATAL_ERROR "GTSAM_EXAMPLE_BUILD_PYTHON requires GTSAM_TYPEDEF_POINTS_TO_VECTORS to be enabled but it is not.")
+	# 	message(FATAL_ERROR "WRAP_EXAMPLE_BUILD_PYTHON requires GTSAM_TYPEDEF_POINTS_TO_VECTORS to be enabled but it is not.")
 	# endif()
-	set(GTSAM_EXAMPLE_PY_INSTALL_PATH "${CMAKE_INSTALL_PREFIX}/python")
+	set(WRAP_EXAMPLE_PY_INSTALL_PATH "${CMAKE_INSTALL_PREFIX}/python")
 endif()
 add_subdirectory(python)
