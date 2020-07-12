@@ -1,26 +1,18 @@
-# gtsam-project-python
+# wrap-project-python
 
-Project template using GTSAM + python wrapping
+Project template illustrating python wrapping with borglab/wrap, **no** GTSAM.
 
 ## PREREQUISITES
 
 - Python 3.6+ is required, since we support these versions.
-- Make the following changes to `GTSAM`:
-
-  - Set the CMake flag `GTSAM_INSTALL_CYTHON_TOOLBOX` to `ON` to enable building the cython wrapper.
-  - Set the CMake flag `GTSAM_PYTHON_VERSION` to `3`, otherwise the default interpreter will be used.
-  - You can do this on the command line as follows:
-
-    ```sh
-    cmake -GTSAM_INSTALL_CYTHON_TOOLBOX=ON -DGTSAM_PYTHON_VERSION=3 ..
-    ```
 
 ## INSTALL
 
 - In the `example` directory, create the `build` directory and `cd` into it.
 - Run `cmake ..`.
-- Run `make`, and the wrapped module will be installed to a `cython` directory.
-- Navigate to the `cython` directory and run `python setup.py install`.
+- Run `make`, and the wrapped module will built into build/python.
+- Run `make install`, which will install the C++ library (only) to the cmake prefix.
+- Run `make python-install`, which will run `python build/python/setup.py install` in your current environment.
 
 ## DOCUMENTATION
 
