@@ -3,6 +3,8 @@
 ###################################################################################
 # To create your own project, replace "wrap_example" with the actual name of your project
 cmake_minimum_required(VERSION 3.0)
+# If you change the project name, you also need to change the folder name of
+# `python/wrap_example_py`
 project(wrap_example CXX C)
 set(CXX_STANDARD 11)
 
@@ -21,7 +23,6 @@ endif()
 # Add the local source directory for CMake
 # Ensure that local folder is searched before library folders
 include_directories(BEFORE "${PROJECT_SOURCE_DIR}")
-
 
 ###################################################################################
 # Build static library from common sources
