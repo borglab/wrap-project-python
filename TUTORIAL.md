@@ -1,6 +1,6 @@
 # Tutorial
 
-This is a tutorial on how to wrap your own C++ projects using GTSAM's python wrapper.
+This is a tutorial on how to wrap your own C++ projects using the `borglab/wrap` python wrapper.
 
 # Prerequisites
 
@@ -8,10 +8,6 @@ We assume you have Python 3 installed. We support Python 3.6 and up.
 
 We also assume some knowledge of how Python packaging and setup works. If you understand how to write your own basic `setup.py` file, you should be fine.
 Using this template project, you should only need to update the metadata information about your project. Check out the [python packaging website](https://packaging.python.org/tutorials/packaging-projects/) to learn more.
-
-As a bonus, if you understand Cython's build process, this tutorial should be fairly intuitive.
-
-**NOTE** This tutorial has been tested using GTSAM version 4.0.x and above.
 
 # Project Setup
 
@@ -22,9 +18,9 @@ top-level-directory
 |
 |- CMakeLists.txt
 |- <project>.h
-|- __init__.py.in
-|- setup.py
+|- python/
 |- src/
+|- wrap/
 
 ```
 
@@ -32,10 +28,10 @@ The files are
 
 1. `CMakeLists.txt`: The cmake definition file.
 2. `<project>.h`: The header file which specifies all the code components to be wrapped.
-3. `__init__.py.in`: Template __init__.py file used by cmake.
-4. `setup.py`: The file used by setuptools to generate the egg/wheel.
+3. `python/package_name_py/__init__.py.in`: Template __init__.py file used by cmake.
+4. `python/setup.py.in`: The file used by setuptools to generate the egg/wheel.
 5. `src/`: All your C++ source code goes here.
-
+6. `wrap/`: The wrapper utility (as a submodule).
 
 # CMake Configuration
 

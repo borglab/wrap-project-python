@@ -22,11 +22,9 @@ class TestCal3Unified(GtsamTestCase):
         g = gtsam_example.Greeting()
         g.sayHello()
 
-    def test_invertRot3(self):
-        import gtsam
+    def test_Goodbye(self):
         g = gtsam_example.Greeting()
-        r = gtsam.Rot3()
-        g.invertRot3(r)
+        g.sayGoodbye()
 
 
 if __name__ == "__main__":
