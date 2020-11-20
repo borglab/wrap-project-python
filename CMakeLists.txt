@@ -12,8 +12,16 @@ set(CXX_STANDARD 11)
 # Set the python version
 set(WRAP_PYTHON_VERSION "Default" CACHE STRING "The Python version to use for wrapping")
 if(WRAP_PYTHON_VERSION STREQUAL "Default")
+  find_package(Python3 COMPONENTS Interpreter Development)
   find_package(PythonInterp REQUIRED)
   find_package(PythonLibs REQUIRED)
+
+  set(GTSAM_PYTHON_VERSION "${Python3_VERSION_MAJOR}.${Python3_VERSION_MINOR}"
+      CACHE
+      STRING
+      "The version of Python to build the wrappers against."
+      FORCE)
+
 else()
   find_package(PythonInterp ${WRAP_PYTHON_VERSION} EXACT REQUIRED)
   find_package(PythonLibs ${WRAP_PYTHON_VERSION} EXACT REQUIRED)
@@ -35,7 +43,7 @@ install(TARGETS ${PROJECT_NAME} LIBRARY DESTINATION lib ARCHIVE DESTINATION lib 
 
 ###################################################################################
 # Build Pybind wrapper
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/wrap/cmake")
+find_package(gtwrap)
 
 set(WRAP_EXAMPLE_VERSION_STRING 0.0.1) # Needed for generating setup.py
 
