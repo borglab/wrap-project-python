@@ -7,10 +7,11 @@ This file will be included as the python package description :)
 ## PREREQUISITES
 
 - Python 3.6+ is required.
+- Install the `wrap` repo located [here](https://github.com/borglab/wrap).
 
 ## INSTALL
 
-- Clone this repository with all submodules by `git clone --recursive https://github.com/borglab/wrap-project-python.git`
+- Clone this repository with all submodules by `git clone https://github.com/borglab/wrap-project-python.git`
 - In the project directory, create a `build` directory and `cd` into it.
 - Run `cmake ..` (with optional prefix of your choice)
 - Run `make`, and the wrapped module will built into build/python.
