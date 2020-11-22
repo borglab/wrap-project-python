@@ -43,6 +43,8 @@ install(TARGETS ${PROJECT_NAME} LIBRARY DESTINATION lib ARCHIVE DESTINATION lib 
 
 ###################################################################################
 # Build Pybind wrapper
+# This is our in-house wrapper project which parses an interface file to generate the wrapper.
+# Installing it follows the standard CMake process.
 find_package(gtwrap)
 
 set(WRAP_EXAMPLE_VERSION_STRING 0.0.1) # Needed for generating setup.py
