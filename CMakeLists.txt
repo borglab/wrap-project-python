@@ -2,7 +2,7 @@
 
 ###################################################################################
 # To create your own project, replace "wrap_example" with the actual name of your project
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.12)
 # If you change the project name, you also need to change the folder name of
 # `python/wrap_example_py`
 project(wrap_example CXX C)
@@ -10,21 +10,25 @@ set(CXX_STANDARD 11)
 
 ###################################################################################
 # Set the python version
-set(WRAP_PYTHON_VERSION "Default" CACHE STRING "The Python version to use for wrapping")
-if(WRAP_PYTHON_VERSION STREQUAL "Default")
-  find_package(Python3 COMPONENTS Interpreter Development)
-  find_package(PythonInterp REQUIRED)
-  find_package(PythonLibs REQUIRED)
+set(WRAP_PYTHON_VERSION "Default"
+    CACHE STRING
+    "The Python version to use for wrapping")
 
-  set(GTSAM_PYTHON_VERSION "${Python3_VERSION_MAJOR}.${Python3_VERSION_MINOR}"
+if(WRAP_PYTHON_VERSION STREQUAL "Default")
+  # Check for Python3 or Python2 in order
+  find_package(Python COMPONENTS Interpreter Development)
+
+  set(WRAP_PYTHON_VERSION "${Python_VERSION_MAJOR}.${Python_VERSION_MINOR}"
       CACHE
       STRING
       "The version of Python to build the wrappers against."
       FORCE)
 
 else()
-  find_package(PythonInterp ${WRAP_PYTHON_VERSION} EXACT REQUIRED)
-  find_package(PythonLibs ${WRAP_PYTHON_VERSION} EXACT REQUIRED)
+  find_package(Python ${WRAP_PYTHON_VERSION}
+               COMPONENTS Interpreter Development
+               EXACT
+               REQUIRED)
 endif()
 
 ###################################################################################
@@ -47,7 +51,7 @@ install(TARGETS ${PROJECT_NAME} LIBRARY DESTINATION lib ARCHIVE DESTINATION lib 
 # Installing it follows the standard CMake process.
 find_package(gtwrap)
 
-set(WRAP_EXAMPLE_VERSION_STRING 0.0.1) # Needed for generating setup.py
+set(WRAP_EXAMPLE_VERSION_STRING 1.0.0) # Needed for generating setup.py
 
 option(WRAP_EXAMPLE_BUILD_PYTHON "Build the Python wrapper" ON)
 
