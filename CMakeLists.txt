@@ -14,6 +14,11 @@ set(WRAP_PYTHON_VERSION "Default"
     CACHE STRING
     "The Python version to use for wrapping")
 
+# Unset default values so that `find_package` can set the correct ones.
+unset(Python_EXECUTABLE CACHE)
+unset(Python_INCLUDE_DIR CACHE)
+unset(Python_MAJOR_VERSION CACHE)
+
 if(WRAP_PYTHON_VERSION STREQUAL "Default")
   # Check for Python3 or Python2 in order
   find_package(Python COMPONENTS Interpreter Development)
