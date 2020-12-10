@@ -5,25 +5,25 @@ All Rights Reserved
 
 See LICENSE for the license information
 
-Cal3Unified unit tests.
-Author: Frank Dellaert & Duy Nguyen Ta (Python)
+Basic tests for the example.
+
+Author: Frank Dellaert & Duy Nguyen Ta & Varun Agrawal
 """
 import unittest
 
-import numpy as np
-
-import gtsam_example
-from gtsam.utils.test_case import GtsamTestCase
+import wrap_example
 
 
-class TestCal3Unified(GtsamTestCase):
-
+class TestWrapExample:
+    """Simple test class."""
     def test_Hello(self):
-        g = gtsam_example.Greeting()
+        """Should print `Hello from C++!`"""
+        g = wrap_example.Greeting()
         g.sayHello()
 
     def test_Goodbye(self):
-        g = gtsam_example.Greeting()
+        """Should print `Goodbye, robot`"""
+        g = wrap_example.Greeting()
         g.sayGoodbye()
 
 

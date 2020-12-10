@@ -2,7 +2,7 @@
 
 ###################################################################################
 # To create your own project, replace "wrap_example" with the actual name of your project
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.12)
 # If you change the project name, you also need to change the folder name of
 # `python/wrap_example_py`
 project(wrap_example CXX C)
@@ -10,13 +10,30 @@ set(CXX_STANDARD 11)
 
 ###################################################################################
 # Set the python version
-set(WRAP_PYTHON_VERSION "Default" CACHE STRING "The Python version to use for wrapping")
+set(WRAP_PYTHON_VERSION "Default"
+    CACHE STRING
+    "The Python version to use for wrapping")
+
+# Unset default values so that `find_package` can set the correct ones.
+unset(Python_EXECUTABLE CACHE)
+unset(Python_INCLUDE_DIR CACHE)
+unset(Python_MAJOR_VERSION CACHE)
+
 if(WRAP_PYTHON_VERSION STREQUAL "Default")
-  find_package(PythonInterp REQUIRED)
-  find_package(PythonLibs REQUIRED)
+  # Check for Python3 or Python2 in order
+  find_package(Python COMPONENTS Interpreter Development)
+
+  set(WRAP_PYTHON_VERSION "${Python_VERSION_MAJOR}.${Python_VERSION_MINOR}"
+      CACHE
+      STRING
+      "The version of Python to build the wrappers against."
+      FORCE)
+
 else()
-  find_package(PythonInterp ${WRAP_PYTHON_VERSION} EXACT REQUIRED)
-  find_package(PythonLibs ${WRAP_PYTHON_VERSION} EXACT REQUIRED)
+  find_package(Python ${WRAP_PYTHON_VERSION}
+               COMPONENTS Interpreter Development
+               EXACT
+               REQUIRED)
 endif()
 
 ###################################################################################
@@ -35,9 +52,11 @@ install(TARGETS ${PROJECT_NAME} LIBRARY DESTINATION lib ARCHIVE DESTINATION lib 
 
 ###################################################################################
 # Build Pybind wrapper
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/wrap/cmake")
+# This is our in-house wrapper project which parses an interface file to generate the wrapper.
+# Installing it follows the standard CMake process.
+find_package(gtwrap)
 
-set(WRAP_EXAMPLE_VERSION_STRING 0.0.1) # Needed for generating setup.py
+set(WRAP_EXAMPLE_VERSION_STRING 1.0.0) # Needed for generating setup.py
 
 option(WRAP_EXAMPLE_BUILD_PYTHON "Build the Python wrapper" ON)
 
