@@ -4,7 +4,7 @@
 # ##############################################################################
 # To create your own project, replace "wrap_example" with the actual name of
 # your project
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.10)
 # If you change the project name, you also need to change the folder name of
 # `python/wrap_example_py`
 project(wrap_example CXX C)
@@ -41,17 +41,23 @@ install(
   RUNTIME DESTINATION bin)
 
 # ##############################################################################
-# Build Pybind wrapper This is our in-house wrapper project which parses an
-# interface file to generate the wrapper. Installing it follows the standard
-# CMake process.
-set(WRAP_EXAMPLE_VERSION_STRING 1.0.0) # Needed for generating setup.py
+# Build Pybind wrapper.
+# This is our in-house wrapper project which parses an interface file
+# to generate the wrapper.
+# Installing it follows the standard CMake process.
 
+# CMake flag to wrap this project.
 option(WRAP_EXAMPLE_BUILD_PYTHON "Build the Python wrapper" ON)
 
+# Set the version for the project. Needed for setup.py.
+set(WRAP_EXAMPLE_VERSION_STRING 1.0.0) # Needed for generating setup.py
+
 if(WRAP_EXAMPLE_BUILD_PYTHON)
-  # if (NOT GTSAM_TYPEDEF_POINTS_TO_VECTORS) message(FATAL_ERROR
-  # "WRAP_EXAMPLE_BUILD_PYTHON requires GTSAM_TYPEDEF_POINTS_TO_VECTORS to be
-  # enabled but it is not.") endif()
   set(WRAP_EXAMPLE_PY_INSTALL_PATH "${CMAKE_INSTALL_PREFIX}/python")
 endif()
 add_subdirectory(python)
+
+message("========== Configuration Options ==========")
+message(STATUS "Project:                  ${PROJECT_NAME}")
+message(STATUS "Python Version:           ${WRAP_PYTHON_VERSION}")
+message("===========================================")
