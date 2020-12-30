@@ -4,7 +4,7 @@
 # ##############################################################################
 # To create your own project, replace "wrap_example" with the actual name of
 # your project
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.9)
 # If you change the project name, you also need to change the folder name of
 # `python/wrap_example_py`
 project(wrap_example CXX C)
