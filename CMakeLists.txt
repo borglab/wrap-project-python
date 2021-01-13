@@ -53,11 +53,11 @@ option(WRAP_EXAMPLE_BUILD_PYTHON "Build the Python wrapper" ON)
 set(WRAP_EXAMPLE_VERSION_STRING 1.0.0) # Needed for generating setup.py
 
 if(WRAP_EXAMPLE_BUILD_PYTHON)
-  set(WRAP_EXAMPLE_PY_INSTALL_PATH "${CMAKE_INSTALL_PREFIX}/python")
+  add_subdirectory(python)
 endif()
-add_subdirectory(python)
 
 message("========== Configuration Options ==========")
 message(STATUS "Project:                  ${PROJECT_NAME}")
+message(STATUS "Build Python:             ${WRAP_EXAMPLE_BUILD_PYTHON}")
 message(STATUS "Python Version:           ${WRAP_PYTHON_VERSION}")
 message("===========================================")

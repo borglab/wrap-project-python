@@ -25,7 +25,7 @@ setup(
     author_email='frank.dellaert@gtsam.org',
     license='Simplified BSD license',
     keywords='slam sam robotics localization mapping optimization',
-    long_description='''${README_CONTENTS}''',
+    long_description=open("${PROJECT_SOURCE_DIR}/README.md").read(),
     # https://pypi.org/pypi?%3Aaction=list_classifiers
     classifiers=[
         'Development Status :: 5 - Production/Stable',
@@ -41,7 +41,6 @@ setup(
     ],
     packages=packages,
     package_data=package_data,
-    test_suite="gtsam_example.tests",
     install_requires=["numpy"],
     zip_safe=False,
 )
