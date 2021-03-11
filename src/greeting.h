@@ -5,8 +5,10 @@ namespace wrap_example {
 
 class Greeting {
  public:
-  /// Print a greeting
-  void sayHello() const;
+  std::string name;
+
+  /// Print a greeting and optionally add name
+  void sayHello(const std::string& s = "");
 
   /// Print a farewell
   void sayGoodbye() const;
