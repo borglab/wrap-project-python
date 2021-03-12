@@ -23,7 +23,11 @@ namespace wrap_example {
 
 class Greeting {
   Greeting();
-  void sayHello() const;
+
+  // We can wrap class variables but only if they are `public`
+  string name;
+
+  void sayHello(const string& name);
   void sayGoodbye() const;
 };
 
