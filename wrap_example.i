@@ -8,7 +8,7 @@
  * -------------------------------------------------------------------------- */
 
 /**
- * @file     gtsam_example.h
+ * @file     wrap_example.i
  * @brief    Example wrapper interface file for Python
  * @author   Varun Agrawal
  * @author   Fan Jiang
@@ -28,7 +28,12 @@ class Greeting {
   string name;
 
   void sayHello(const string& name);
-  void sayGoodbye() const;
+  void takeAPointer(const double* d) const;
+  void sayGoodbye(wrap_example::Greeting** x) const;
+
 };
 
-}  // namespace gtsam_example
+template<T = {string, double}, R = {double}>
+R CoolFunction(const T& s);
+
+}  // namespace wrap_example

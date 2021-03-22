@@ -21,7 +21,7 @@ pybind_wrap(
   ${CMAKE_CURRENT_LIST_DIR}/pybind_wrapper.tpl
   ${PYBIND_WRAP_MODULE_NAME} # libs
   "${PYBIND_WRAP_MODULE_NAME};${PYBIND_WRAP_MODULE_NAME}_header" # dependencies
-  OFF # use_boost
+  ON # use_boost
 )
 
 set(WRAP_EXAMPLE_MODULE_PATH ${PROJECT_BINARY_DIR}/${PYBIND_WRAP_MODULE_NAME})

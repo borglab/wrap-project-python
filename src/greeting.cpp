@@ -10,8 +10,8 @@ void Greeting::sayHello(const std::string& s) {
 }
 
 /// Print a farewell
-void Greeting::sayGoodbye() const {
-  std::cout << "Goodbye, robot" << std::endl;
+void Greeting::sayGoodbye(boost::shared_ptr<Greeting> x) const {
+  std::cout << "Goodbye, from robot " << x->name << std::endl;
 }
 
 };  // namespace wrap_example
