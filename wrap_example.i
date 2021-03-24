@@ -28,8 +28,8 @@ class Greeting {
   string name;
 
   void sayHello(const string& name);
-  void takeAPointer(const double* d) const;
-  void sayGoodbye(wrap_example::Greeting** x) const;
+  void takeAPointer(const double@ d) const;
+  void sayGoodbye(wrap_example::Greeting* x) const;
 
 };
 
