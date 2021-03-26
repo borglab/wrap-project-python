@@ -23,13 +23,16 @@ namespace wrap_example {
 
 class Greeting {
   Greeting();
+  Greeting(const string& s);
 
   // We can wrap class variables but only if they are `public`
   string name;
 
-  void sayHello(const string& name);
+  void sayHello() const;
   void takeAPointer(const double@ d) const;
   void sayGoodbye(wrap_example::Greeting* x) const;
+
+  wrap_example::Greeting operator+(const wrap_example::Greeting& other) const;
 
 };
 

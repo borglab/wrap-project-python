@@ -3,8 +3,7 @@
 namespace wrap_example {
 
 /// Print a greeting
-void Greeting::sayHello(const std::string& s) {
-  name = s;
+void Greeting::sayHello() const {
   std::cout << "Hello from C++!" << (name.empty() ? "" : " " + name)
             << std::endl;
 }
