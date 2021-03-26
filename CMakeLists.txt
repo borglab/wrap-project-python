@@ -11,16 +11,14 @@ project(wrap_example CXX C)
 set(CXX_STANDARD 11)
 
 # ##############################################################################
-# Find the gtwrap package so we have access to the wrapper
-find_package(gtwrap)
-
-# ##############################################################################
 # Set the python version
 set(WRAP_PYTHON_VERSION
     "Default"
     CACHE STRING "The Python version to use for wrapping")
 
-gtwrap_get_python_version(${WRAP_PYTHON_VERSION})
+# ##############################################################################
+# Find the gtwrap package so we have access to the wrapper
+find_package(gtwrap)
 
 # ##############################################################################
 # Add the local source directory for CMake Ensure that local folder is searched
