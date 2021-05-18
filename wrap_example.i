@@ -30,6 +30,7 @@ class Greeting {
 
   void sayHello() const;
   void takeAPointer(const double@ d) const;
+  void printOptional(boost::optional<string> s = nullptr);
   void sayGoodbye(wrap_example::Greeting* x) const;
 
   wrap_example::Greeting operator+(const wrap_example::Greeting& other) const;
@@ -38,5 +39,12 @@ class Greeting {
 
 template<T = {string, double}, R = {double}>
 R CoolFunction(const T& s);
+
+enum Pet {
+  Dog,
+  Cat,
+  Hamster,
+  Goldfish
+};
 
 }  // namespace wrap_example
