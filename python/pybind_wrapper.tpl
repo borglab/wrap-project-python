@@ -9,9 +9,6 @@
 
 #include <boost/optional.hpp>
 
-#include "gtsam/config.h"
-#include "gtsam/base/serialization.h"
-
 {includes}
 #include <boost/serialization/export.hpp>
 
@@ -20,7 +17,7 @@
 {holder_type}
 
 // Preamble for STL classes
-#include "python/preamble.h"
+#include "python/{module_name}/preamble/{module_name}.h"
 
 using namespace std;
 
@@ -32,6 +29,6 @@ PYBIND11_MODULE({module_name}, m_) {{
     {wrapped_namespace}
 
 // Specializations for STL classes
-#include "python/specializations.h"
+#include "python/{module_name}/specializations/{module_name}.h"
 
 }}
