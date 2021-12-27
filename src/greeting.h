@@ -18,7 +18,10 @@ class Greeting {
   /// An example of declaring a simple pointer type
   void takeAPointer(const double* d) const {}
 
-  /// Example of optional parameter. For Pybind, we use nullptr which gets typecast to None.
+  /**
+   * Example of optional parameter.
+   * For Pybind, we use nullptr which gets typecast to None.
+   */
   void printOptional(boost::optional<std::string> s = boost::none) const {
     if (s) {
       std::cout << *s << std::endl;
