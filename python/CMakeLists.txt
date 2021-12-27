@@ -14,7 +14,7 @@ set(ignore)
 pybind_wrap(
   ${PYBIND_WRAP_MODULE_NAME}_py # target
   ${PROJECT_SOURCE_DIR}/${PYBIND_WRAP_MODULE_NAME}.i # interface_header
-  "../${PYBIND_WRAP_MODULE_NAME}.cpp" # generated_cpp
+  "${PYBIND_WRAP_MODULE_NAME}.cpp" # generated_cpp
   "${PYBIND_WRAP_MODULE_NAME}" # module_name
   "${PYBIND_WRAP_MODULE_NAME}" # top_namespace
   "${ignore}" # ignore_classes
@@ -36,14 +36,14 @@ set_target_properties(
              RELWITHDEBINFO_POSTFIX "" # Otherwise you will have a wrong name
 )
 
-# Symlink all tests .py files to build folder.
-create_symlinks("${CMAKE_CURRENT_SOURCE_DIR}/${PYBIND_WRAP_MODULE_NAME}_py/"
-                "${WRAP_EXAMPLE_MODULE_PATH}")
+# Copy all python .py files to build folder.
+copy_directory("${CMAKE_CURRENT_SOURCE_DIR}/${PYBIND_WRAP_MODULE_NAME}/"
+               "${WRAP_EXAMPLE_MODULE_PATH}")
 
-# Copy the __init__.py file so Cython recognizes this as a package. This
+# Copy the __init__.py file so Python recognizes this as a package. This
 # function also updates the contents to use the correct package name.
 configure_file(
-  ${CMAKE_CURRENT_LIST_DIR}/${PYBIND_WRAP_MODULE_NAME}_py/__init__.py.in
+  ${CMAKE_CURRENT_LIST_DIR}/${PYBIND_WRAP_MODULE_NAME}/__init__.py.in
   ${WRAP_EXAMPLE_MODULE_PATH}/__init__.py)
 
 set(WRAP_EXAMPLE_PYTHON_INSTALL_TARGET python-install)
